@@ -8,7 +8,7 @@ var zahirr = db.get("zahirr");
 	console.log('')
 }
 
-var creatorList = ['@theodorickalfa09_','@theodorickalfa09_','@theodorickalfa09_','@theodorickalfa09_', '@theodorickalfa09_','@theodorickalfa09_','@theodorickalfa09_'];
+var creatorList = ['@alphakingg_','@theodorickalfa09_'];
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 
 
@@ -41,7 +41,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 key nya gratis kok'
+        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 , key nya gratis kok'
     },
     notkey: {
         status: false,
@@ -113,7 +113,7 @@ loghandler = {
         status: false,
         creator: `${creator}`,
         code: 406,
-        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6283898698875 , key nya gratis kok gan, jadi santuyy ajaa'
+        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 key nya gratis kok'
     },
     invalidlink: {
         status: false,
@@ -153,7 +153,7 @@ var len = 15
             randomlagi += arr[Math.floor(Math.random() * arr.length)];
         }
 
-        var randomTextNumber = 'Alphakingg
+        var randomTextNumber = random+randomlagi+'alphakingg-image-maker';
         
  
  async function cekApiKey(api) {
@@ -1512,15 +1512,21 @@ router.get('/hilih', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             kata = req.query.kata
             
- if(!apikeyInput) return res.json(loghandler.notparam)
- if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
-        if(!kata) return res.json({ status : false, creator : ${creator}, message : "masukan parameter kata"})
-       hilih = kata.replace(/['a','o','u','e','A','O','U','E']/g, "i");
-         res.json({ 
-        status: true,
-        creator: creator,
-        result: hilih
-       })
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+        if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
+
+       fetch(encodeURI(`https://hilih-api-zhirrr.vercel.app/api/hilih?kata=${kata}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
 })
 
 
