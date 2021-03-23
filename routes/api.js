@@ -41,7 +41,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6283898698875 , key nya gratis kok gan, jadi santuyy ajaa'
+        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 key nya gratis kok'
     },
     notkey: {
         status: false,
@@ -113,7 +113,7 @@ loghandler = {
         status: false,
         creator: `${creator}`,
         code: 406,
-        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 key nya gratis kok'
+        message: 'apikey invalid, gak punya apikey? chat gw aja yaaa di wa.me/6283898698875 , key nya gratis kok gan, jadi santuyy ajaa'
     },
     invalidlink: {
         status: false,
@@ -153,7 +153,7 @@ var len = 15
             randomlagi += arr[Math.floor(Math.random() * arr.length)];
         }
 
-        var randomTextNumber = 'Alphakingg-Image-Maker'
+        var randomTextNumber = 'Alphakingg
         
  
  async function cekApiKey(api) {
@@ -754,38 +754,7 @@ router.get('/textmaker/senja', async (req, res, next) => {
                                 })
                         })
                     }
-           } else if (theme == 'naruto') {
-            request.post({
-                url: "https://photooxy.com/manga-and-anime/make-naruto-banner-online-free-378.html",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `text_1=${text}&login=OK`,
-                }, (e,r,b) => {
-                    if (!e) {
-                        $ = cheerio.load(b)
-                        $(".thumbnail").find("img").each(function() {
-                            h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
-                        })
-                    }
-                })
+                }) 
         } else {
             res.json(loghandler.error)
         }
@@ -1543,21 +1512,15 @@ router.get('/hilih', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             kata = req.query.kata
             
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
-        if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
-
-       fetch(encodeURI(`https://hilih-api-zhirrr.vercel.app/api/hilih?kata=${kata}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
+ if(!apikeyInput) return res.json(loghandler.notparam)
+ if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+        if(!kata) return res.json({ status : false, creator : ${creator}, message : "masukan parameter kata"})
+       hilih = kata.replace(/['a','o','u','e','A','O','U','E']/g, "i");
+         res.json({ 
+        status: true,
+        creator: creator,
+        result: hilih
+       })
 })
 
 
