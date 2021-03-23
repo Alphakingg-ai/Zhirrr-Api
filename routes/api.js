@@ -1526,21 +1526,15 @@ router.get('/hilih', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             kata = req.query.kata
             
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
-        if(!kata) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter kata"})
-
-       fetch(encodeURI(`https://hilih-api-zhirrr.vercel.app/api/hilih?kata=${kata}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
+ if(!apikeyInput) return res.json(loghandler.notparam)
+ if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+        if(!kata) return res.json({ status : false, creator : ${creator}, message : "masukan parameter kata"})
+       hilih = kata.replace(/['a','o','u','e','A','O','U','E']/g, "i");
+         res.json({ 
+        status: true,
+        creator: creator,
+        result: hilih
+       })
 })
 
 
