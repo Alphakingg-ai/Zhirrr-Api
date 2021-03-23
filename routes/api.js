@@ -312,20 +312,6 @@ router.get('/tiktod', async (req, res, next) => {
          })
 })
 
-router.get('/hilih', async (req, res, next) => {
-i = (req) => {
-var himlih = teks.replace(/['a','o','u','e','A','O','U','E']/g, "i");
-}
-var result = himlih;
-res.json({
-creator: creator,
-result: result
-})
-.catch(e => {
-res.json(loghandler.error)
-})
-})
-
 router.get('/tiktod/stalk', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         username = req.query.username
