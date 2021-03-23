@@ -289,6 +289,12 @@ router.get('/remove', (req, res, next) => {
     }
 })
 
+router.get('/administrator', async (req, res, next) => {
+   res.json({
+        testing: true
+     })
+   })
+
 router.get('/tiktod', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         url = req.query.url
