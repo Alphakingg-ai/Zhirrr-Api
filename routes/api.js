@@ -373,7 +373,6 @@ router.get('/randomangka', async (req, res, next) => {
         var resultm = Math.floor(Math.random() * 100)
              res.json({
                  creator : `${creator}`,
-                 result,
                  angka: resultm
          })
          .catch(e => {
