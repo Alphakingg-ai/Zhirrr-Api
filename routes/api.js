@@ -1653,6 +1653,7 @@ router.get('/covidindo', async (req, res, next) => {
         .then(data => {
         var result = data[0];
              res.json({
+                 creator: creator,
                  result
              })
          })
