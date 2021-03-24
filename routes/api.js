@@ -1648,10 +1648,10 @@ router.get('/covidindo', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://covid19-api-zhirrr.vercel.app/api/covid-indonesia`))
+       fetch(encodeURI(`https://api.kawalcorona.com/indonesia`))
         .then(response => response.json())
         .then(data => {
-        var result = data;
+        var result = data[0];
              res.json({
                  result
              })
