@@ -364,6 +364,23 @@ router.get('/randomquote', async (req, res, next) => {
 })
 })
 
+router.get('/randomangka', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+
+        var resultm = Math.floor(Math.random() * 100)
+             res.json({
+                 creator : `${creator}`,
+                 result,
+                 angka: resultm
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
 
 router.get('/infonpm', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
