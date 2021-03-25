@@ -1748,7 +1748,7 @@ router.get('/random/meme', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/meme`))
+       fetch(encodeURI(`https://recoders-area.herokuapp.com/api/random/meme?apikey=FreeApi`))
         .then(response => response.json())
         .then(data => {
         var result = data;
