@@ -211,7 +211,7 @@ router.get('/cekapikey', async (req, res, next) => {
 res.send(JSON.parse(json))
 })
 
-router.get('/addapikey', (req, res, next) => {
+router.get('/administrator/addapikey', (req, res, next) => {
     var apikey = req.query.apikey,
         status = req.query.status,
         apikeyInput  = req.query.apikeyInput,
@@ -421,8 +421,7 @@ router.get('/short/tiny', async (req, res, next) => {
                  creator : `${creator}`,
                  result : {
                      link : `${body}`,
-                 },
-                 message : `jangan lupa follow ${creator}`
+                 }
              })
          } catch (e) {
              console.log('Error :', color(e,'red'))
