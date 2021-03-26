@@ -211,15 +211,15 @@ router.get('/cekapikey', async (req, res, next) => {
 res.send(JSON.parse(json))
 })
 
-router.get('/administrator/addapikey', (req, res, next) => {
+router.get('/addapikey', (req, res, next) => {
     var apikey = req.query.apikey,
         status = req.query.status,
         apikeyInput  = req.query.apikeyInput,
         email = req.query.email,
-        nomorhp = req.query.nomorhp;
+        nomorhp = req.query.nomorhp
         name = req.query.name,
         age = req.query.age,
-        country = req.query.country,
+        country = req.query.country;
         exp = req.query.exp;
 
     if (!apikey) return res.json(loghandler.notparam)
@@ -231,7 +231,7 @@ router.get('/administrator/addapikey', (req, res, next) => {
         	status: status,
             apikey: apikeyInput,
             email: email,
-            nomor_hp: nomorhp;
+            nomor_hp: nomorhp,
             name: name,
             age: age,
             country: country,
@@ -255,7 +255,7 @@ router.get('/remove', (req, res, next) => {
         status = req.query.status,
         apikeyInput  = req.query.apikeyInput,
         email = req.query.email,
-        nomorhp = req.query.nomorhp;
+        nomorhp = req.query.nomorhp
         name = req.query.name,
         age = req.query.age,
         country = req.query.country;
@@ -270,7 +270,7 @@ router.get('/remove', (req, res, next) => {
             status: status,
             apikey: apikeyInput,
             email: email,
-            nomor_hp: nomorhp;
+            nomor_hp: nomorhp,
             name: name,
             age: age,
             country: country,
@@ -288,6 +288,7 @@ router.get('/remove', (req, res, next) => {
         res.json(loghandler.error)
     }
 })
+
 
 router.get('/administrator', async (req, res, next) => {
    res.json({
