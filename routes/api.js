@@ -8,7 +8,7 @@ var zahirr = db.get("zahirr");
 	console.log('')
 }
 
-var creatorList = ['@alphakingg_','@theodorickalfa09_'];
+var creatorList = ['@theodorickalfa09_','@alphakingg_'];
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 
 
@@ -41,7 +41,7 @@ loghandler = {
         creator: `${creator}`,
         code: 406,
         message: 'masukan parameter apikey',
-        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 , key nya gratis kok'
+        getApikey: 'gak punya apikey? chat gw aja yaaa di wa.me/6285746657092 key nya gratis kok gan'
     },
     notkey: {
         status: false,
@@ -153,7 +153,7 @@ var len = 15
             randomlagi += arr[Math.floor(Math.random() * arr.length)];
         }
 
-        var randomTextNumber = random+randomlagi+'alphakingg-image-maker';
+        var randomTextNumber = random+randomlagi+'_AlphakinggDev';
         
  
  async function cekApiKey(api) {
@@ -289,13 +289,6 @@ router.get('/remove', (req, res, next) => {
     }
 })
 
-
-router.get('/administrator', async (req, res, next) => {
-   res.json({
-        testing: true
-     })
-   })
-
 router.get('/tiktod', async (req, res, next) => {
     var apikeyInput = req.query.apikey,
         url = req.query.url
@@ -365,6 +358,7 @@ router.get('/randomquote', async (req, res, next) => {
 })
 })
 
+
 router.get('/infonpm', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             query = req.query.query
@@ -405,13 +399,51 @@ router.get('/short/tiny', async (req, res, next) => {
                  creator : `${creator}`,
                  result : {
                      link : `${body}`,
-                 }
+                 },
+                 message : `jangan lupa follow ${creator}`
              })
          } catch (e) {
              console.log('Error :', color(e,'red'))
              res.json(loghandler.invalidlink)
          }
      })
+})
+
+router.get('/ttp', async (req, res, next) => {
+        var apikeyInput = req.query.apikey,
+            teks = req.query.teks
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+    if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
+
+       fetch(encodeURI(`https://api.areltiyan.site/sticker_maker?text=${teks}`))
+        .then(response => response.json())
+        .then(data => {
+        var result = data;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+router.get('/randomangka', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
+
+        var resultm = Math.floor(Math.random() * 100)
+             res.json({
+                 creator : `${creator}`,
+                 angka: resultm
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
 })
 
 router.get('/base', async (req, res, next) => {
@@ -824,6 +856,7 @@ router.get('/hadits', async (req, res, next) => {
          	res.json(loghandler.error)
 })
 })
+
 
 router.get('/quran', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
@@ -1626,12 +1659,11 @@ router.get('/covidindo', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://api.kawalcorona.com/indonesia`))
+       fetch(encodeURI(`https://covid19-api-zhirrr.vercel.app/api/covid-indonesia`))
         .then(response => response.json())
         .then(data => {
-        var result = data[0];
+        var result = data;
              res.json({
-                 creator: creator,
                  result
              })
          })
@@ -1710,7 +1742,7 @@ router.get('/random/meme', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://recoders-area.herokuapp.com/api/random/meme?apikey=FreeApi`))
+       fetch(encodeURI(`https://docs-api-zahirrr.herokuapp.com/api/meme`))
         .then(response => response.json())
         .then(data => {
         var result = data;
