@@ -365,23 +365,6 @@ router.get('/randomquote', async (req, res, next) => {
 })
 })
 
-router.get('/randomangka', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
-
-        var resultm = Math.floor(Math.random() * 100)
-             res.json({
-                 creator : `${creator}`,
-                 angka: resultm
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-
 router.get('/infonpm', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
             query = req.query.query
@@ -830,27 +813,6 @@ router.get('/hadits', async (req, res, next) => {
     if (!nomor) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter nomor"})
 
        fetch(encodeURI(`https://hadits-api-zhirrr.vercel.app/books/${kitab}/${nomor}`))
-        .then(response => response.json())
-        .then(data => {
-        var result = data;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-router.get('/ttp', async (req, res, next) => {
-        var apikeyInput = req.query.apikey,
-            teks = req.query.teks
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'alpha-adm') return res.json(loghandler.invalidKey)
-    if (!teks) return res.json({ status : false, creator : `${creator}`, message : "masukan parameter teks"})
-
-       fetch(encodeURI(`https://api.areltiyan.site/sticker_maker?text=${teks}`))
         .then(response => response.json())
         .then(data => {
         var result = data;
